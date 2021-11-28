@@ -5,6 +5,7 @@ import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import com.memeGenerator.fun.common.Logger;
 import com.memeGenerator.fun.configuration.MemeGeneratorConfigurationProperties;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,7 @@ public class StorageServiceImpl implements StorageService {
             }
             writer.write(file.getBytes());
         } catch (Exception e) {
-            System.out.println("file storage failed " + e);
+            Logger.debugLog("file storage failed " + e);
         }
 
     }
@@ -54,10 +55,10 @@ public class StorageServiceImpl implements StorageService {
         Resource resource = null;
         try {
             Path file = this.ROOT_LOCATION.resolve(filename);
-            System.out.println("file " + file);
+            Logger.debugLog("file " + file);
             resource = new UrlResource(file.toUri());
         } catch(Exception e) {
-            System.out.println("exception occured... " + e);
+            Logger.debugLog("exception occured... " + e);
         }
         return resource;
     }
