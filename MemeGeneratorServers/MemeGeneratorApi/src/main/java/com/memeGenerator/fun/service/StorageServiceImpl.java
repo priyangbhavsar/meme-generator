@@ -1,4 +1,4 @@
-package com.meneGenerator.fun.service;
+package com.memeGenerator.fun.service;
 
 import java.io.FileOutputStream;
 import java.io.File;

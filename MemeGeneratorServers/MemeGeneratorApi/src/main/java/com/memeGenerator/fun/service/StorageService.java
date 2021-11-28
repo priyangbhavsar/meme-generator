@@ -1,4 +1,4 @@
-package com.meneGenerator.fun.service;
+package com.memeGenerator.fun.service;
 
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
