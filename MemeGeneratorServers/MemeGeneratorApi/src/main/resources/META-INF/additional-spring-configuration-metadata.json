@@ -1,0 +1,9 @@
+{
+    "properties": [
+        {
+            "name": "applicationconfigs.uploadfilepath",
+            "type": "java.lang.String",
+            "description": "file path for upload image"
+        }
+    ]
+}
