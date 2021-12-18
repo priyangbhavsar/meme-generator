@@ -15,52 +15,84 @@ body {
     .canvas-wrap {
         width: 100%;
         text-align: center;
-        canvas {
-            background-color: #eee;
-            // opacity: 0;
-            transition: opacity 0.3s;
-            &.show {
-                opacity: 1;
-            }
-            position: absolute;
-            top:0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            margin:auto;
-        }
+        border: 1px solid black;
         margin-top: 50px;
         position: relative;
+    }
+    .controls {
+        width: 530px;
+        @media (max-width: 1150px) {
+            width: 100%;
+        }
+        margin: 5px;
+        float: left;
+        .form {
+            .labels {
+                width: 50%;
+                .labelContainer {
+                    // border-bottom: 1px solid black;
+                    padding: 11px;
+                    margin-bottom: 7px;
+                    display: block;
+                }
+                float: left;
+            }
+            .inputs {
+              width: 50%;
+                display: inline;
+                .input-container {
+                    border: 1px solid black;
+                    display: block;
+                    padding: 10px;
+                    img {
+                        float: right;
+                        position: absolute;
+                    }
+                }
+            }
+        }
     }
 }
 
 .controls {
     &__input {
         display: block;
-        margin: 0 auto;
         background: none;
         border: none;
-        font-size: 1em;
         padding-bottom: 0.5em;
-        border-bottom: 2px solid #ccc;
+        border-bottom: 2px solid black;
         text-align: center;
         outline: none;
-        color: #fff;
+        color: black;
     }
     &__btn {
-        background: dodgerblue;
-        color: #fff;
-        border: none;
         font-size: 1em;
+        border-radius: 5px;
+        width: 200px;
     }
     &__label {
         display: block;
-        font-size: 0.8em;
-        padding-top: 0.3em;
+        font-size:1em;
+        padding-top: 1em;
         margin-bottom: 2em;
     }
 }
 
 #canvasID {
     z-index: 9999;
+}
+
+canvas {
+    width: calc(100% - 600px);
+    float: right;
+    @media (max-width: 1150px) {
+        width: 70%;
+        float: none;
+    }
+    background-color: #eee;
+    // opacity: 0;
+    transition: opacity 0.3s;
+    &.show {
+        opacity: 1;
+    }
 }

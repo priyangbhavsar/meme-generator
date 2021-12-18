@@ -1,17 +1,70 @@
-
-<h1>Overlay text on canvas image and save as base64</h1>
 <div class="page-wrap">
   <div class="controls">
-    <input class="controls__input" type="file" id="imageLoader" name="imageLoader" (change)="handleImage($event)" />
-    <label class="controls__label" for="name">First, choose an image.</label>
-    
-    <input class="controls__input1" id="name" type="text" (keyup)="DynamicText($event)" [(ngModel)]="text_title"/>
-    <label class="controls__label" for="name">Overlay Text</label>
+    <div class="form">
+      <div class="labels">
+        <div class="controls__label labelContainer">
+          choose an image
+          <!-- <mat-form-field class="input" type="file" id="imageLoader" name="imageLoader" (change)="handleImage($event)" ></mat-form-field> -->
+        </div>
+        <div class="controls__label labelContainer">
+          Overlay Text
+        </div>
+        <div class="controls__label labelContainer">
+          Overlay Text (x,y)
+        </div>
+        <div class="controls__label labelContainer">
+          margin top
+        </div>
+        <div class="controls__label labelContainer">
+          margin bottom
+        </div>
+        <div class="controls__label labelContainer">
+          font color
+        </div>
+        <div class="controls__label labelContainer">
+          Image max height
+        </div>
+        <div class="controls__label labelContainer">
+        </div>
+      </div>
+      <div class="inputs">
+        <div class="input-container">
+          <input class="controls_input" type="file" id="imageLoader" name="imageLoader"
+            (change)="handleImage($event)" />
+        </div>
+        <div class="input-container">
+          <input class="controls__input input" id="name" type="text" (keyup)="DynamicText($event)"
+            [(ngModel)]="text_title" />
+        </div>
+        <div class="input-container">
+          ({{textX}},{{textY}})
+        </div>
+        <div class="input-container">
+          <input class="controls__input input" id="margin_top" type="number"
+            [(ngModel)]="canvasProperties.margin_top" />
+        </div>
+        <div class="input-container">
+          <input class="controls__input input" id="margin_bottom" type="number"
+            [(ngModel)]="canvasProperties.margin_bottom" />
+        </div>
+        <div class="input-container">
+          <input class="controls__input font_color" id="font_color" type="color"
+            [(ngModel)]="canvasProperties.font_color" />
+        </div>
+        <div class="input-container">
+          <input class="controls__input max_height" id="max_height" type="number"
+            [(ngModel)]="canvasProperties.max_height" />
+        </div>
+        <div class="input-container">
+          <input class="controls__btn max_height" id="max_height" type="button" value="Submit" />
+        </div>
+      </div>
+    </div>
   </div>
   <div id="canvas-wrap">
-     <canvas style="display:inline" id="imageCanvas" width=400px height=400px (click)="canvasClicked($event)">
-        <canvas id="canvasID"></canvas>
-    </canvas> 
+    <canvas style="display:inline" id="imageCanvas" (click)="canvasClicked($event)">
+      <canvas id="canvasID"></canvas>
+    </canvas>
   </div>
-  
+
 </div>
