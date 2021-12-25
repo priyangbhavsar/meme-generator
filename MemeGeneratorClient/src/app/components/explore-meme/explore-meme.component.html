@@ -1,0 +1,23 @@
+<div class="explore-meme-container">
+    <div class="image-wrapper">
+        <app-button-component iconPath="../../../assets/icons/previous-button.png" buttonText=""></app-button-component>
+        <img class="main-image" [src]="imageSrc">
+        <app-button-component iconPath="../../../assets/icons/next-button.png" buttonText=""
+            [iconPosition]="iconPosition.RIGHT"></app-button-component>
+    </div>
+
+    <div class="action-button-wrapper">
+        <div class="action-button like" (click)="toggleLike(true)">
+            Like 
+            <i [ngClass]="isLiked && actionDone  ? 'bi bi-hand-thumbs-up-fill' : 'bi bi-hand-thumbs-up'"></i>
+        </div>
+        <div class="action-button download" (click)="downloadImage()">
+            Downloads
+            <i class="bi bi-download"></i>
+        </div>
+        <div class="action-button dis-like" (click)="toggleLike(false)">
+            DisLike
+            <i [ngClass]="!isLiked && actionDone ? 'bi bi-hand-thumbs-down-fill' : 'bi bi-hand-thumbs-down'"></i>
+        </div>
+    </div>
+</div>

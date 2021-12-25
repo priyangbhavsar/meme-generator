@@ -1,0 +1,5 @@
+<button class="button-container" [class.rotate]="rotate">
+    <img class="icon" *ngIf="iconPath && iconPosition === 1" [src]="iconPath" height="30px">
+    {{buttonText}}
+    <img class="icon" *ngIf="iconPath && iconPosition === 2" [src]="iconPath" height="30px">
+</button>

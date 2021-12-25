@@ -6,11 +6,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MatInputModule } from '@angular/material/input';
+import { ExploreMemeComponent } from './components/explore-meme/explore-meme.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ButtonComponentComponent } from './components/common-components/button-component/button-component.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    ExploreMemeComponent,
+    ButtonComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -18,7 +23,8 @@ import { MatInputModule } from '@angular/material/input';
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
