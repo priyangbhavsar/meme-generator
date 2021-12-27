@@ -9,13 +9,16 @@ import { MatInputModule } from '@angular/material/input';
 import { ExploreMemeComponent } from './components/explore-meme/explore-meme.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ButtonComponentComponent } from './components/common-components/button-component/button-component.component';
+import { SidebarComponent } from './components/common-components/sidebar-component/sidebar.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     ExploreMemeComponent,
-    ButtonComponentComponent
+    ButtonComponentComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,8 @@ import { ButtonComponentComponent } from './components/common-components/button-
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    CKEditorModule
   ],
   providers: [],
   bootstrap: [AppComponent],

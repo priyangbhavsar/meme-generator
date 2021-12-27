@@ -1,14 +1,18 @@
 <div class="explore-meme-container">
     <div class="image-wrapper">
         <app-button-component iconPath="../../../assets/icons/previous-button.png" buttonText=""></app-button-component>
-        <img class="main-image" [src]="imageSrc">
+        <div class="image-container">
+            <div class="image-header">header</div>
+            <img class="main-image" [src]="imageSrc">
+            <div class="image-footer">footer</div>
+        </div>
         <app-button-component iconPath="../../../assets/icons/next-button.png" buttonText=""
             [iconPosition]="iconPosition.RIGHT"></app-button-component>
     </div>
 
     <div class="action-button-wrapper">
         <div class="action-button like" (click)="toggleLike(true)">
-            Like 
+            Like
             <i [ngClass]="isLiked && actionDone  ? 'bi bi-hand-thumbs-up-fill' : 'bi bi-hand-thumbs-up'"></i>
         </div>
         <div class="action-button download" (click)="downloadImage()">

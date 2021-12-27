@@ -1,0 +1,19 @@
+<div class="sidebar" [class.open]="isOpen">
+    <div class="toggle-sidebar" (click)="isOpen = !isOpen">
+        <i class="bi bi-three-dots"></i>
+    </div>
+    <div class="user-container">
+        <img class="user-image" src="../../../../assets/images/unknown_user.jpg"/>
+    </div>
+    <div class="action-container" *ngIf="isOpen">
+        <!-- <div class="edit-content" *ngIf="editMode">
+            <ckeditor [editor]="editor"  data="<p>Hello, world!</p>"></ckeditor>
+        </div> -->
+        <div class="toggle-edit-mode form-check form-switch">
+            toggle edit mode :
+            <div>
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+            </div>
+        </div>
+    </div>
+</div>

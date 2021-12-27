@@ -1,0 +1,45 @@
+.sidebar {
+    width: 50px;
+    transition: 0.4s;
+    position: absolute;
+    left: 0px;
+    background-color: white;
+    height: 100vh;
+    text-align: center;
+
+    .toggle-sidebar {
+        font-size: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.4s;
+        height: 30px;
+    }
+    .user-container {
+        .user-image {
+            max-width: 50px;
+            transition: 0.4s;
+        }
+    }
+    .action-container {
+        margin-top: 50px;
+    }
+    &.open {
+        width: 350px;
+        .toggle-sidebar {
+            justify-content: right;
+        }
+        .user-container {
+            .user-image {
+                max-width: 350px;
+            }
+        }
+        .action-container {
+            .toggle-edit-mode {
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+            }
+        }
+    }
+}
