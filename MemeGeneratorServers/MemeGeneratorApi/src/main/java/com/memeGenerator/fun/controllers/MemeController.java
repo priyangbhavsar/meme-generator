@@ -1,7 +1,9 @@
 package com.memeGenerator.fun.controllers;
 
 import com.memeGenerator.fun.common.Logger;
+import com.memeGenerator.fun.models.MemeListModel;
 import com.memeGenerator.fun.models.UploadImageRequestModel;
+import com.memeGenerator.fun.service.MemeService;
 import com.memeGenerator.fun.service.StorageService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,8 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 public class MemeController {
     @Autowired
     private StorageService storageService;
+    @Autowired
+    private MemeService memeService;
 
     @PostMapping(value = "/uploadImage")
     public boolean uploadImage(@RequestBody UploadImageRequestModel requestModel) {
@@ -47,9 +51,14 @@ public class MemeController {
                     "attachment; filename=\"" + file.getFilename() + "\"").body(file);
         } catch (Exception e) {
             Logger.debugLog("exception ... " + e);
-            return ResponseEntity.ok().header(HttpHeaders.ACCEPT,
-                    "abc").body("file");
+            return ResponseEntity.notFound().build();
         }
     }
 
+    @GetMapping("getMemeList")
+    @ResponseBody
+    public ResponseEntity<MemeListModel> getMemeList(int pageNumber, int pageSize) {
+        MemeListModel response = this.memeService.getMemeList(pageNumber, pageSize);
+        return ResponseEntity.ok().body(response);
+    }
 }
