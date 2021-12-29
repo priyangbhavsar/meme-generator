@@ -42,11 +42,11 @@ public class MemeController {
 
     @GetMapping("/files/{filename}")
     @ResponseBody
-    public ResponseEntity serveFile(@PathVariable String filename) {
+    public ResponseEntity<Object> serveFile(@PathVariable String filename) {
         try {
             Logger.debugLog("filename" + filename);
-            storageService.init();
-            Resource file = storageService.loadAsResource(filename);
+            this.storageService.init();
+            Resource file = this.storageService.loadAsResource(filename);
             return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
                     "attachment; filename=\"" + file.getFilename() + "\"").body(file);
         } catch (Exception e) {

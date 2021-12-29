@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+<!-- <includeall path="/databasechangelog"/> -->
+<include  file= "./createTableAndTypes.mssql.sql" relativeToChangelogFile="true"/>
+<include  file= "./AlterSessionLogTable.mssql.sql" relativeToChangelogFile="true"/>
+<include  file= "./InsertPermissionValue.mssql.sql" relativeToChangelogFile="true"/>
+<include  file= "./AlterSessionLogTableAddUserIDandInstituteId.mssql.sql" relativeToChangelogFile="true"/>
+<include  file="./UpdatePermissionValue.mssql.sql" relativeToChangelogFile="true"/>
+<include  file="./AddSearchPermissionValues.mssql.sql" relativeToChangelogFile="true"/>
+<include  file="./InsertPermissionForUnauthenticatedUser.mssql.sql" relativeToChangelogFile="true"/>
+<include  file="./InsertPermissionForDashboards.mssql.sql" relativeToChangelogFile="true"/>
+<include  file="./updatePermissionValueForTeacherResources.mssql.sql" relativeToChangelogFile="true"/>
+<include  file="./CreateUserStatisticTable.mssql.sql" relativeToChangelogFile="true"/>
+<include  file="./CreateActivityStatisticTable.mssql.sql" relativeToChangelogFile="true"/>
+<include  file="./AddHodderSiteRedirectPermissionValues.mssq.sql" relativeToChangelogFile="true"/>
+
+</databaseChangeLog>

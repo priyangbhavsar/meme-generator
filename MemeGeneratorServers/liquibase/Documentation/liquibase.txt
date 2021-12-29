@@ -1,0 +1,47 @@
+Installation instructions site:
+https://www.liquibase.org/documentation/installation-windows.html
+
+Java Setup site:
+jre: https://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html
+jdk: https://www.java.com/en/download/win10.jsp
+
+JDBC java mssql connector
+https://www.microsoft.com/en-us/download/confirmation.aspx?id=58505
+
+1. unzip jdbc connector in liquibase folder.
+2. copy sqljdbc_auth.dll from : liquibase\Microsoft JDBC Driver 7.4 for SQL Server\sqljdbc_7.4\enu\auth\x64 
+3. paste it to C:\Program Files\Java\jre1.8.0_241\lib and C:\Program Files\Java\jre1.8.0_241\bin
+
+=>concepts of liquibase
+	Changelog file:- It is the file containg all the changes occuring in the database.
+	changeset:- it is group of changes to be performed in the database.
+	changes:- it is the change/refactoring to be applied on the database/
+
+=>how to run liquibase
+	1. Download Liquibase from the URL 
+		https://github.com/liquibase/liquibase/releases/download/liquibase-parent-3.5.3/liquibase-3.5.3-bin.zip 
+   	   extract it into a folder with name of your choice I am Naming it as liquibase.
+	2. If you don't have JDBC drivers for mysql then download from 
+		https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.45.zip 
+   	   extract it into a folder with name of your choice I am naming it as drivers. Now move this drivers folder inside liquibase folder.
+	3. Create a file with name liquibase.properties this file will be used to save the parmeters of our database connection otherwise we need to specify it explicitly while running liquibase. The file content will be 
+		--classpath=drivers/mysql-connector-java-5.1.45-bin.jar 
+		--driver=com.mysql.jdbc.Driver 
+		--url=jdbc:mysql://localhost:3306/liquibasetest
+		      jdbc:mariadb://mariadb-staging:3306/testdb
+		--username=root 
+		--password=root
+  	   save the file in the directory .
+	4. create a folder changesets(You can name according to your choice) inside liquibase folder. we will create the first changeset file create a file named changeset_1.0.sql the content of the file would be
+		--liquibase formatted sql
+	5. open cmd and cd to liquibase folder. Run the command 
+		liquibase --changeLogFile=changesets/changeset_1.0.sql update
+	6. open the mysql workbench you will see two tables created inside liquibasetest database.
+	7. Now we will compare training database which already exists with the newly created liquibase test database.
+	8. Run the Command
+		liquibase --changeLogFile=changesets/difference.mysql.sql diffChangeLog --referenceUrl=jdbc:mysql://localhost:3306/training --referenceUsername=root --referencePassword=root
+		
+		liquibase --changeLogFile=changesets/difference.mariadb.sql diffChangeLog --referenceUrl=jdbc:mariadb://mariadb-staging:3306/testdb --referenceUsername=naitik.parekh --referencePassword=9S[3FPW4ybE5}YvR
+
+	9. This will give the changes required to be done to migrate from liquibase database to training database in the difference.mysql.sql file. 
+   	   if we use diff instead of diffChangeLog and did not specify the --changeLogFile it will give the difference between two database in the form of report.
