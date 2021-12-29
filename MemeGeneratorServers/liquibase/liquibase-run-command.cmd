@@ -1,0 +1,1 @@
+liquibase --username=root --password=root --changeLogFile=.\\DatabaseChangeLog\\memegeneratorDemo\\dbchangelog-master.xml --url=jdbc:mysql://localhost:3306/memegeneratorDemo --driver=com.mysql.jdbc.Driver --classpath=.\\mysql-connector\\mysql-connector-java-5.1.49.jar  update

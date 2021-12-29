@@ -7,17 +7,5 @@
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
 
 <!-- <includeall path="/databasechangelog"/> -->
-<include  file= "./createTableAndTypes.mssql.sql" relativeToChangelogFile="true"/>
-<include  file= "./AlterSessionLogTable.mssql.sql" relativeToChangelogFile="true"/>
-<include  file= "./InsertPermissionValue.mssql.sql" relativeToChangelogFile="true"/>
-<include  file= "./AlterSessionLogTableAddUserIDandInstituteId.mssql.sql" relativeToChangelogFile="true"/>
-<include  file="./UpdatePermissionValue.mssql.sql" relativeToChangelogFile="true"/>
-<include  file="./AddSearchPermissionValues.mssql.sql" relativeToChangelogFile="true"/>
-<include  file="./InsertPermissionForUnauthenticatedUser.mssql.sql" relativeToChangelogFile="true"/>
-<include  file="./InsertPermissionForDashboards.mssql.sql" relativeToChangelogFile="true"/>
-<include  file="./updatePermissionValueForTeacherResources.mssql.sql" relativeToChangelogFile="true"/>
-<include  file="./CreateUserStatisticTable.mssql.sql" relativeToChangelogFile="true"/>
-<include  file="./CreateActivityStatisticTable.mssql.sql" relativeToChangelogFile="true"/>
-<include  file="./AddHodderSiteRedirectPermissionValues.mssq.sql" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

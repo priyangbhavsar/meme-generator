@@ -7,7 +7,6 @@ import com.memeGenerator.fun.models.vo.Meme;
 import com.memeGenerator.fun.repositories.MemeRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,8 +15,6 @@ public class MemeServiceImpl implements MemeService {
     private MemeRepository repository;
 
     public MemeListModel getMemeList(int pageNumber, int pageSize) {
-        Sort sort = Sort.
-
         List<Meme> memeList = this.repository.findAll();
         MemeListModel response = new MemeListModel();
         response.setMemeList(memeList);
