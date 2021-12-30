@@ -1,7 +1,7 @@
 package com.memeGenerator.fun.service;
 
-import java.io.FileOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 

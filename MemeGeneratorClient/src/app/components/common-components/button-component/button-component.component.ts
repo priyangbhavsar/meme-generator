@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { iconPosition } from 'src/app/models/enums/globalEnums';
 
 @Component({
@@ -21,7 +21,12 @@ export class ButtonComponentComponent implements OnInit {
 
   @Input()
   rotate: boolean = false
+
+  @Output() clickItemEvent = new EventEmitter<boolean>();
   ngOnInit(): void {
   }
 
+  buttonClicked() {
+    this.clickItemEvent.emit(true);
+  }
 }

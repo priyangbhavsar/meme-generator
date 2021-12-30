@@ -1,15 +1,23 @@
 package com.memeGenerator.fun.models.vo;
 
 import javax.persistence.Column;
+import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
+@NamedStoredProcedureQuery(name="meme.getRandomMeme", procedureName="GetRandomMeme",
+parameters = {
+})
 @Table(name = "meme")
 public class Meme {
     @Id
@@ -19,13 +27,19 @@ public class Meme {
     @Column(name = "fileName")
     private String fileName;
 
-    @ManyToOne
-    @JoinColumn(name = "userId")
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name = "userId", nullable = false, referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_userId_user", value = ConstraintMode.CONSTRAINT))
     private User user;
 
-    public int getId() {
-        return this.id;
-    }
+    @GenericGenerator(name = "generator", strategy = "guid", parameters = {})
+    @GeneratedValue(generator = "generator")
+    @Column(name = "guid", nullable = false)
+    private String guid;
+
+
+    // public int getId() {
+    //     return this.id;
+    // }
 
     public void setId(int id) {
         this.id = id;
@@ -45,5 +59,13 @@ public class Meme {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getGuid() {
+        return guid;
+    }
+
+    public void setGuid(String guid) {
+        this.guid = guid;
     }
 }

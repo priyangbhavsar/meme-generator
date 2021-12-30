@@ -6,7 +6,9 @@ import com.memeGenerator.fun.models.vo.Meme;
 
 public class MemeListModel {
     private int total;
+
     private List<Meme> memeList;
+
 
     public int getTotal() {
         return this.total;
@@ -23,4 +25,5 @@ public class MemeListModel {
     public void setMemeList(List<Meme> memeList) {
         this.memeList = memeList;
     }
+
 }

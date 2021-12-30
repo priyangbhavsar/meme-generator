@@ -1,13 +1,15 @@
 <div class="explore-meme-container">
     <div class="image-wrapper">
-        <app-button-component iconPath="../../../assets/icons/previous-button.png" buttonText=""></app-button-component>
-        <div class="image-container">
-            <div class="image-header">header</div>
+        <app-button-component iconPath="../../../assets/icons/previous-button.png" buttonText=""
+        (clickItemEvent)="changeMeme(false)" *ngIf="currentIndex > 0" ></app-button-component>
+        <div class="image-container" #imageContainer>
+            <div class="image-header"><p>
+                {{memeHeader}}
+            </p></div>
             <img class="main-image" [src]="imageSrc">
-            <div class="image-footer">footer</div>
         </div>
         <app-button-component iconPath="../../../assets/icons/next-button.png" buttonText=""
-            [iconPosition]="iconPosition.RIGHT"></app-button-component>
+            [iconPosition]="iconPosition.RIGHT" (clickItemEvent)="changeMeme(true)"></app-button-component>
     </div>
 
     <div class="action-button-wrapper">

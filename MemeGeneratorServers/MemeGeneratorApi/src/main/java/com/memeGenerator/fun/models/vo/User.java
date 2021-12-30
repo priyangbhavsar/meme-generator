@@ -22,12 +22,12 @@ public class User {
 
     // @GenericGenerator(name = "generator", strategy = "guid", parameters = {})
     // @GeneratedValue(generator = "generator")
-    @Column(name = "guid")
+    @Column(name = "guid", nullable = false)
     private String guid;
 
-    public int getId() {
-        return this.id;
-    }
+    // public int getId() {
+    //     return this.id;
+    // }
 
     public void setId(int id) {
         this.id = id;

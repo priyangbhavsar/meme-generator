@@ -6,6 +6,6 @@
   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
 
-  <include  file= "./GetRendomMeme.StoredProcedure.sql" relativeToChangelogFile="true"/>
+  <include  file= "./GetRandomMeme.StoredProcedure.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>
 

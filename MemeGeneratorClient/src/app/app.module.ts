@@ -11,7 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ButtonComponentComponent } from './components/common-components/button-component/button-component.component';
 import { SidebarComponent } from './components/common-components/sidebar-component/sidebar.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-
+import { MatToolbarModule, MatIconModule, MatCardModule, MatButtonModule, MatProgressSpinnerModule } from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +28,12 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     MatFormFieldModule,
     MatInputModule,
     HttpClientModule,
-    CKEditorModule
+    CKEditorModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent],
