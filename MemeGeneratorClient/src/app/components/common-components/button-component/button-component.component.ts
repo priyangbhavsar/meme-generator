@@ -26,7 +26,8 @@ export class ButtonComponentComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  buttonClicked() {
+  buttonClicked(event: Event | null = null) {
+    if (event) { event.stopPropagation(); }
     this.clickItemEvent.emit(true);
   }
 }

@@ -1,12 +1,25 @@
 <div class="explore-meme-container">
     <div class="image-wrapper">
-        <app-button-component iconPath="../../../assets/icons/previous-button.png" buttonText=""
-        (clickItemEvent)="changeMeme(false)" *ngIf="currentIndex > 0" ></app-button-component>
+        <div class="settings" (click)="openSettingsDialog()">
+            <img src="../../../assets/icons/settings.png" height="30px" class="settings-icon">
+        </div>
+        <div>
+            <app-button-component iconPath="../../../assets/icons/previous-button.png" buttonText=""
+                (clickItemEvent)="changeMeme(false)" [hidden]="currentIndex === 0"></app-button-component>
+        </div>
         <div class="image-container" #imageContainer>
-            <div class="image-header"><p>
-                {{memeHeader}}
-            </p></div>
-            <img class="main-image" [src]="imageSrc">
+            <div class="image-header" (click)="editModeEnabled = true">
+                <div *ngIf="!editModeEnabled" [innerHtml]="memeHeader"></div>
+                <ckeditor *ngIf="editModeEnabled" [editor]="Editor"
+                [(ngModel)]="memeHeader"
+                [config]="{uiColor: '#a4a4a4'}"
+                debounce="500"
+                ></ckeditor>
+                <app-button-component buttonText="Done" iconPath="../../../assets/images/done.png"
+                    (clickItemEvent)="editModeEnabled = false" *ngIf="editModeEnabled"></app-button-component>
+            </div>
+            <img class="main-image" [src]="imageSrc" (load)="onImageLoad()"
+                (error)="imageSrc = './../../assets/images/sample_meme_2.jpg'">
         </div>
         <app-button-component iconPath="../../../assets/icons/next-button.png" buttonText=""
             [iconPosition]="iconPosition.RIGHT" (clickItemEvent)="changeMeme(true)"></app-button-component>

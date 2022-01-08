@@ -11,14 +11,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { ButtonComponentComponent } from './components/common-components/button-component/button-component.component';
 import { SidebarComponent } from './components/common-components/sidebar-component/sidebar.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import { MatToolbarModule, MatIconModule, MatCardModule, MatButtonModule, MatProgressSpinnerModule } from '@angular/material';
+import { MatToolbarModule, MatIconModule, MatCardModule, MatButtonModule, MatProgressSpinnerModule, MatDialogModule } from '@angular/material';
+import { LoaderComponent } from './components/common-components/loader-component/loader.component';
+import { EditModalComponent } from './components/common-components/modal-components/edit-modal/edit-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     ExploreMemeComponent,
     ButtonComponentComponent,
-    SidebarComponent
+    SidebarComponent,
+    LoaderComponent,
+    EditModalComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,8 @@ import { MatToolbarModule, MatIconModule, MatCardModule, MatButtonModule, MatPro
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent],

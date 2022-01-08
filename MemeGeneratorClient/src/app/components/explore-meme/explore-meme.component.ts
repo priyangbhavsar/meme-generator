@@ -1,3 +1,5 @@
+import { DashboardComponent } from './../dashboard/dashboard.component';
+import { CommonService } from './../../services/common.service';
 import { APIService } from './../../services/api.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
@@ -5,6 +7,8 @@ import { iconPosition } from 'src/app/models/enums/globalEnums';
 import * as _ from 'lodash';
 import { MemeCaptionModel, MemeListResponseModel, MemeModel } from 'src/app/models/getMemeListResponseModel';
 import  * as htmlToImage from 'html-to-image'
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-explore-meme',
@@ -22,18 +26,20 @@ export class ExploreMemeComponent implements OnInit {
   defaultPageSize = 3
   currentIndex = 0
   fileBaseUrl = 'http://localhost:8080/meme/files/'
-  memeHeader: string = 'header'
-
+  memeHeader: string = ''
+  editModeEnabled = false
   @ViewChild("imageContainer")
   private imageElement : ElementRef | undefined; 
+  public Editor = ClassicEditor
 
-  constructor(private router: Router, private apiService: APIService) { }
+  constructor(private apiService: APIService, private commonService: CommonService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getMoreMeme()
   }
 
   downloadImage(): void {
+    this.commonService.componentLoading.next(true)
     if (this.imageElement) {
       htmlToImage.toJpeg(this.imageElement.nativeElement as HTMLElement).then(dataUrl => {
         var a = document.createElement('a');
@@ -42,6 +48,7 @@ export class ExploreMemeComponent implements OnInit {
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
+      this.commonService.componentLoading.next(false)
       })
     }
   }
@@ -77,6 +84,17 @@ export class ExploreMemeComponent implements OnInit {
 
   updateimageAndHeader() {
     this.imageSrc = this.fileBaseUrl + this.memeList[this.currentIndex].fileName
+    this.commonService.componentLoading.next(true)
     this.memeHeader = _.get(this.memeCaptionList, [this.currentIndex, 'caption'], '')
+  }
+
+  onImageLoad() {
+    this.commonService.componentLoading.next(false)
+  }
+
+  openSettingsDialog() {
+    this.dialog.open(DashboardComponent, {
+      width: '800px'
+    })
   }
 }
