@@ -1,14 +1,17 @@
 import { DashboardComponent } from './../dashboard/dashboard.component';
 import { CommonService } from './../../services/common.service';
 import { APIService } from './../../services/api.service';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { iconPosition } from 'src/app/models/enums/globalEnums';
 import * as _ from 'lodash';
 import { MemeCaptionModel, MemeListResponseModel, MemeModel } from 'src/app/models/getMemeListResponseModel';
-import  * as htmlToImage from 'html-to-image'
+import * as htmlToImage from 'html-to-image'
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { EditModalComponent } from '../common-components/modal-components/edit-modal/edit-modal.component';
+import { editModalInterface } from 'src/app/models/interfaces';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-explore-meme',
@@ -27,12 +30,24 @@ export class ExploreMemeComponent implements OnInit {
   currentIndex = 0
   fileBaseUrl = 'http://localhost:8080/meme/files/'
   memeHeader: string = ''
+  editModeData: editModalInterface = {
+    isEdit: false,
+    constantCaption: false,
+    constantImage: false
+  }
   editModeEnabled = false
   @ViewChild("imageContainer")
-  private imageElement : ElementRef | undefined; 
+  private imageElement: ElementRef | undefined;
   public Editor = ClassicEditor
+  private dialogRef: MatDialogRef<EditModalComponent> | undefined
+  private sunscriptions: Subscription[] = []
 
-  constructor(private apiService: APIService, private commonService: CommonService, private dialog: MatDialog) { }
+  constructor(
+    private apiService: APIService, 
+    private commonService: CommonService, 
+    private dialog: MatDialog,
+    private changeDetectorRef: ChangeDetectorRef ) {
+  }
 
   ngOnInit(): void {
     this.getMoreMeme()
@@ -48,7 +63,7 @@ export class ExploreMemeComponent implements OnInit {
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
-      this.commonService.componentLoading.next(false)
+        this.commonService.componentLoading.next(false)
       })
     }
   }
@@ -83,9 +98,12 @@ export class ExploreMemeComponent implements OnInit {
   }
 
   updateimageAndHeader() {
-    this.imageSrc = this.fileBaseUrl + this.memeList[this.currentIndex].fileName
+    if (!this.editModeData.constantImage)
+      this.imageSrc = this.fileBaseUrl + this.memeList[this.currentIndex].fileName
     this.commonService.componentLoading.next(true)
-    this.memeHeader = _.get(this.memeCaptionList, [this.currentIndex, 'caption'], '')
+    if(!this.editModeData.constantCaption)
+      this.memeHeader = _.get(this.memeCaptionList, [this.currentIndex, 'caption'], '')
+    this.commonService.componentLoading.next(false)
   }
 
   onImageLoad() {
@@ -93,8 +111,24 @@ export class ExploreMemeComponent implements OnInit {
   }
 
   openSettingsDialog() {
-    this.dialog.open(DashboardComponent, {
-      width: '800px'
+
+    this.dialogRef = this.dialog.open(EditModalComponent, {
+      width: '800px',
+      data: this.editModeData
+    });
+
+    const subscription = this.dialogRef.afterClosed().subscribe((data: editModalInterface) => {
+      if (data)
+        this.editModeData = data
+      console.log('data', data, this.editModeData)
     })
+
+    this.sunscriptions.push(subscription)
+    this.changeDetectorRef.detectChanges()
+
+  }
+
+  ngOnDestroy(): void {
+    this.sunscriptions.forEach(sub => sub.unsubscribe())
   }
 }

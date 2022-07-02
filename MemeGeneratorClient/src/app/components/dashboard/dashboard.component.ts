@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dialogRef: MatDialogRef<DashboardComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Record<any, any>
+  ) { }
 
   img: any
   canvas: HTMLCanvasElement | null = null;
@@ -151,7 +155,7 @@ export class DashboardComponent implements OnInit {
       image.width = this.canvasProperties.width = this.canvas.width;
       this.canvasProperties.height = this.canvas.height = image.height =
         (image.height > this.canvasProperties.max_height + this.canvasProperties.margin_top
-           ? this.canvasProperties.max_height + this.canvasProperties.margin_top : image.height + this.canvasProperties.margin_top);
+          ? this.canvasProperties.max_height + this.canvasProperties.margin_top : image.height + this.canvasProperties.margin_top);
     }
   }
 }

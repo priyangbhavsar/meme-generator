@@ -8,15 +8,16 @@
                 (clickItemEvent)="changeMeme(false)" [hidden]="currentIndex === 0"></app-button-component>
         </div>
         <div class="image-container" #imageContainer>
-            <div class="image-header" (click)="editModeEnabled = true">
-                <div *ngIf="!editModeEnabled" [innerHtml]="memeHeader"></div>
-                <ckeditor *ngIf="editModeEnabled" [editor]="Editor"
-                [(ngModel)]="memeHeader"
-                [config]="{uiColor: '#a4a4a4'}"
-                debounce="500"
-                ></ckeditor>
+            <div class="image-header" [class.editable]="editModeData.isEdit">
+                <div *ngIf="!editModeEnabled" [innerHtml]="memeHeader" class="header-text"></div>
+                <ckeditor *ngIf="editModeEnabled" [editor]="Editor" [(ngModel)]="memeHeader"
+                    [config]="{uiColor: '#a4a4a4'}" debounce="500"></ckeditor>
                 <app-button-component buttonText="Done" iconPath="../../../assets/images/done.png"
                     (clickItemEvent)="editModeEnabled = false" *ngIf="editModeEnabled"></app-button-component>
+
+                <div class="image-header-overlay" (click)="editModeEnabled = true" *ngIf="!editModeEnabled && editModeData.isEdit">
+                    <i class="bi bi-pen-fill"></i>
+                </div>
             </div>
             <img class="main-image" [src]="imageSrc" (load)="onImageLoad()"
                 (error)="imageSrc = './../../assets/images/sample_meme_2.jpg'">

@@ -1,1 +1,25 @@
-<p>edit-modal works!</p>
+<div>
+    <h1 mat-dialog-title class="title">Settings Menu</h1>
+
+
+    <div mat-dialog-content class="content">
+        <div class="form-check form-switch radio-btn">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Edit Mode</label>
+            <mat-slide-toggle class="form-input" [(ngModel)]="data.isEdit">
+            </mat-slide-toggle>
+        </div>
+        <div class="form-check form-switch radio-btn">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Make Image Constant</label>
+            <mat-slide-toggle class="form-input" [(ngModel)]="data.constantImage">
+            </mat-slide-toggle>
+        </div>
+        <div class="form-check form-switch radio-btn">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Make Caption Constant</label>
+            <mat-slide-toggle class="form-input" [(ngModel)]="data.constantCaption">
+            </mat-slide-toggle>
+        </div>
+    </div>
+    <div mat-dialog-actions class="action-btn-container">
+        <button mat-raised-button color="primary" (click)="closeDialog()">Done</button>
+    </div>
+</div>

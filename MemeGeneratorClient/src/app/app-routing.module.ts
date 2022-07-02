@@ -2,6 +2,7 @@ import { ExploreMemeComponent } from './components/explore-meme/explore-meme.com
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EditModalComponent } from './components/common-components/modal-components/edit-modal/edit-modal.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'explore',
     component: ExploreMemeComponent
+  },
+  {
+    path: 'edit',
+    component: EditModalComponent
   }
 ];
 

@@ -1,0 +1,33 @@
+div {
+    height: max-content;
+
+    .title {
+        border-bottom: 1px solid black;
+        font-weight: bold;
+    }
+
+    .content {
+        overflow: hidden;
+        height: max-content;
+        font-size: larger;
+
+        .radio-btn {
+            display: flex;
+            align-items: stretch;
+            margin: 20px 0px;
+        }
+
+        .form-check-label {
+            width: 80%;
+        }
+
+        .form-input {
+            align-self: flex-end;
+        }
+    }
+
+    .action-btn-container {
+        justify-content: right;
+        align-items: right;
+    }
+}

@@ -11,9 +11,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { ButtonComponentComponent } from './components/common-components/button-component/button-component.component';
 import { SidebarComponent } from './components/common-components/sidebar-component/sidebar.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import { MatToolbarModule, MatIconModule, MatCardModule, MatButtonModule, MatProgressSpinnerModule, MatDialogModule } from '@angular/material';
 import { LoaderComponent } from './components/common-components/loader-component/loader.component';
 import { EditModalComponent } from './components/common-components/modal-components/edit-modal/edit-modal.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MaterialExampleModule} from '../material.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +28,7 @@ import { EditModalComponent } from './components/common-components/modal-compone
     EditModalComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -33,16 +37,23 @@ import { EditModalComponent } from './components/common-components/modal-compone
     MatInputModule,
     HttpClientModule,
     CKEditorModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatCardModule,
-    MatProgressSpinnerModule,
-    MatDialogModule
+    BrowserAnimationsModule,
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    MatNativeDateModule,
+    MaterialExampleModule,
+    ReactiveFormsModule,
+
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent],
   exports: [
+  ],
+  entryComponents: [
+    DashboardComponent,
+    EditModalComponent
   ]
 })
 export class AppModule { }
