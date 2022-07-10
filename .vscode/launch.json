@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch FunApplication",
+            "request": "launch",
+            "mainClass": "com.memeGenerator.fun.FunApplication",
+            "projectName": "memeGeneratorApi"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"
